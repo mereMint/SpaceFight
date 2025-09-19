@@ -105,7 +105,7 @@ function setupBattleGame() {
         grid: {
             minSize: 5,
             maxSize: 21,
-            defaultSize: 7,
+            defaultSize: 9,
         },
         player: {
             health: 3,
@@ -682,7 +682,7 @@ function setupBattleGame() {
             }
             if (allCells[currentPos]) allCells[currentPos].classList.add('hunter-enemy');
             moves++;
-        }, 200);
+        }, 300);
     }
 
     function triggerSpinnerAttack(enemyIndex) {
