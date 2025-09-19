@@ -682,7 +682,7 @@ function setupBattleGame() {
             }
             if (allCells[currentPos]) allCells[currentPos].classList.add('hunter-enemy');
             moves++;
-        }, 300);
+        }, 350);
     }
 
     function triggerSpinnerAttack(enemyIndex) {
@@ -693,7 +693,7 @@ function setupBattleGame() {
             enemyCell.classList.remove('spinner-enemy');
             let angle = Math.random() * 360;
             const rotationSpeed = (Math.random() < 0.5 ? 3 : -3);
-            const laserLength = gridSize;
+            const laserLength = Math.round(gridSize/2);
             let frames = 0;
             const totalFrames = 360 / Math.abs(rotationSpeed);
             let previousLaserCells = [];

@@ -11,13 +11,15 @@ h1, h2, h3, h4, h5, h6 {
     font-family: "Press Start 2P", system-ui;
     text-shadow: #00FF00 0px 0px 10px;
     animation: jiggle 2s infinite ease-in-out;
-    margin-bottom: 2rem;
+    font-size: 4rem;
+    margin-bottom: 5rem;
 }
 
 .high-score-menu {
     font-family: "Press Start 2P", system-ui;
     font-size: 1.5rem;
     margin-bottom: 3rem;
+    margin-top: 10vh;
 }
 
 .start-button {
