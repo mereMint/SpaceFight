@@ -1,8 +1,140 @@
-<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-  <g transform="translate(50,50) rotate(45) translate(-50,-50)">
-    <path d="M50,15 L85,35 L85,65 L50,85 L15,65 L15,35 Z" stroke="white" stroke-width="4" fill="none" />
-    <path d="M50,15 L50,48" stroke="white" stroke-width="4" fill="none" />
-    <path d="M15,35 L50,48" stroke="white" stroke-width="4" fill="none" />
-    <path d="M85,35 L50,48" stroke="white" stroke-width="4" fill="none" />
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <!-- Rotated pixelated black box with green border -->
+  <g transform="translate(256,256) rotate(18)">
+    <!-- Pixelated border (green) -->
+    <g fill="#00FF00">
+      <!-- Top border -->
+      <rect x="-72" y="-72" width="8" height="8"/>
+      <rect x="-64" y="-72" width="8" height="8"/>
+      <rect x="-56" y="-72" width="8" height="8"/>
+      <rect x="-48" y="-72" width="8" height="8"/>
+      <rect x="-40" y="-72" width="8" height="8"/>
+      <rect x="-32" y="-72" width="8" height="8"/>
+      <rect x="-24" y="-72" width="8" height="8"/>
+      <rect x="-16" y="-72" width="8" height="8"/>
+      <rect x="-8" y="-72" width="8" height="8"/>
+      <rect x="0" y="-72" width="8" height="8"/>
+      <rect x="8" y="-72" width="8" height="8"/>
+      <rect x="16" y="-72" width="8" height="8"/>
+      <rect x="24" y="-72" width="8" height="8"/>
+      <rect x="32" y="-72" width="8" height="8"/>
+      <rect x="40" y="-72" width="8" height="8"/>
+      <rect x="48" y="-72" width="8" height="8"/>
+      <rect x="56" y="-72" width="8" height="8"/>
+      <rect x="64" y="-72" width="8" height="8"/>
+      
+      <!-- Bottom border -->
+      <rect x="-72" y="64" width="8" height="8"/>
+      <rect x="-64" y="64" width="8" height="8"/>
+      <rect x="-56" y="64" width="8" height="8"/>
+      <rect x="-48" y="64" width="8" height="8"/>
+      <rect x="-40" y="64" width="8" height="8"/>
+      <rect x="-32" y="64" width="8" height="8"/>
+      <rect x="-24" y="64" width="8" height="8"/>
+      <rect x="-16" y="64" width="8" height="8"/>
+      <rect x="-8" y="64" width="8" height="8"/>
+      <rect x="0" y="64" width="8" height="8"/>
+      <rect x="8" y="64" width="8" height="8"/>
+      <rect x="16" y="64" width="8" height="8"/>
+      <rect x="24" y="64" width="8" height="8"/>
+      <rect x="32" y="64" width="8" height="8"/>
+      <rect x="40" y="64" width="8" height="8"/>
+      <rect x="48" y="64" width="8" height="8"/>
+      <rect x="56" y="64" width="8" height="8"/>
+      <rect x="64" y="64" width="8" height="8"/>
+      
+      <!-- Left border -->
+      <rect x="-72" y="-64" width="8" height="8"/>
+      <rect x="-72" y="-56" width="8" height="8"/>
+      <rect x="-72" y="-48" width="8" height="8"/>
+      <rect x="-72" y="-40" width="8" height="8"/>
+      <rect x="-72" y="-32" width="8" height="8"/>
+      <rect x="-72" y="-24" width="8" height="8"/>
+      <rect x="-72" y="-16" width="8" height="8"/>
+      <rect x="-72" y="-8" width="8" height="8"/>
+      <rect x="-72" y="0" width="8" height="8"/>
+      <rect x="-72" y="8" width="8" height="8"/>
+      <rect x="-72" y="16" width="8" height="8"/>
+      <rect x="-72" y="24" width="8" height="8"/>
+      <rect x="-72" y="32" width="8" height="8"/>
+      <rect x="-72" y="40" width="8" height="8"/>
+      <rect x="-72" y="48" width="8" height="8"/>
+      <rect x="-72" y="56" width="8" height="8"/>
+      
+      <!-- Right border -->
+      <rect x="64" y="-64" width="8" height="8"/>
+      <rect x="64" y="-56" width="8" height="8"/>
+      <rect x="64" y="-48" width="8" height="8"/>
+      <rect x="64" y="-40" width="8" height="8"/>
+      <rect x="64" y="-32" width="8" height="8"/>
+      <rect x="64" y="-24" width="8" height="8"/>
+      <rect x="64" y="-16" width="8" height="8"/>
+      <rect x="64" y="-8" width="8" height="8"/>
+      <rect x="64" y="0" width="8" height="8"/>
+      <rect x="64" y="8" width="8" height="8"/>
+      <rect x="64" y="16" width="8" height="8"/>
+      <rect x="64" y="24" width="8" height="8"/>
+      <rect x="64" y="32" width="8" height="8"/>
+      <rect x="64" y="40" width="8" height="8"/>
+      <rect x="64" y="48" width="8" height="8"/>
+      <rect x="64" y="56" width="8" height="8"/>
+    </g>
+    
+    <!-- Black fill -->
+    <rect x="-64" y="-64" width="128" height="128" fill="#000000"/>
+    
+    <!-- Pixelated SF text in green - bigger and centered -->
+    <g fill="#00FF00" transform="translate(-48,-32)">
+      <!-- S -->
+      <!-- Top bar -->
+      <rect x="0" y="0" width="8" height="8"/>
+      <rect x="8" y="0" width="8" height="8"/>
+      <rect x="16" y="0" width="8" height="8"/>
+      <rect x="24" y="0" width="8" height="8"/>
+      <rect x="32" y="0" width="8" height="8"/>
+      
+      <!-- Left side top -->
+      <rect x="0" y="8" width="8" height="8"/>
+      <rect x="0" y="16" width="8" height="8"/>
+      
+      <!-- Middle bar -->
+      <rect x="0" y="24" width="8" height="8"/>
+      <rect x="8" y="24" width="8" height="8"/>
+      <rect x="16" y="24" width="8" height="8"/>
+      <rect x="24" y="24" width="8" height="8"/>
+      <rect x="32" y="24" width="8" height="8"/>
+      
+      <!-- Right side bottom -->
+      <rect x="32" y="32" width="8" height="8"/>
+      <rect x="32" y="40" width="8" height="8"/>
+      
+      <!-- Bottom bar -->
+      <rect x="0" y="48" width="8" height="8"/>
+      <rect x="8" y="48" width="8" height="8"/>
+      <rect x="16" y="48" width="8" height="8"/>
+      <rect x="24" y="48" width="8" height="8"/>
+      <rect x="32" y="48" width="8" height="8"/>
+      
+      <!-- F -->
+      <!-- Vertical line -->
+      <rect x="56" y="0" width="8" height="8"/>
+      <rect x="56" y="8" width="8" height="8"/>
+      <rect x="56" y="16" width="8" height="8"/>
+      <rect x="56" y="24" width="8" height="8"/>
+      <rect x="56" y="32" width="8" height="8"/>
+      <rect x="56" y="40" width="8" height="8"/>
+      <rect x="56" y="48" width="8" height="8"/>
+      
+      <!-- Top bar -->
+      <rect x="64" y="0" width="8" height="8"/>
+      <rect x="72" y="0" width="8" height="8"/>
+      <rect x="80" y="0" width="8" height="8"/>
+      <rect x="88" y="0" width="8" height="8"/>
+      
+      <!-- Middle bar -->
+      <rect x="64" y="24" width="8" height="8"/>
+      <rect x="72" y="24" width="8" height="8"/>
+      <rect x="80" y="24" width="8" height="8"/>
+    </g>
   </g>
 </svg>

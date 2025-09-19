@@ -98,6 +98,7 @@ function setupBattleGame() {
     if (!gridContainer) {
         return; // Exit if we're not on the battle page
     }
+    const gameContainer = document.getElementById('container');
 
     // --- Game Configuration ---
     const config = {
@@ -139,6 +140,7 @@ function setupBattleGame() {
     let playerHealth = config.player.health;
     let isInvincible = false;
     let canDash = true;
+    let isShiftDown = false;
     let lastDirection = 'ArrowUp';
     let currentWave = null;
     let wavesTriggered = {};
@@ -174,14 +176,27 @@ function setupBattleGame() {
             allCells.push(cell);
         }
 
-        updateGameMessage(`Grid: ${gridSize}x${gridSize}<br>Press Arrow Key`);
+        updateGridSizeMessage(`Grid: ${gridSize}x${gridSize} | Use +/- to change size | Press any Arrow Key to Start`);
     }
 
     function setupInitialControls() {
         document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+    }
+
+    function handleKeyUp(event) {
+        if (event.key === 'Shift') {
+            isShiftDown = false;
+            hideDashPreview();
+        }
     }
 
     function handleKeyDown(event) {
+        if (event.key === 'Shift' && !isShiftDown) {
+            isShiftDown = true;
+            showDashPreview();
+        }
+
         if (gameState === 'RUNNING') {
             switch (event.key) {
                 case 'ArrowUp':
@@ -225,11 +240,15 @@ function setupBattleGame() {
         }
 
         lastDirection = direction;
+        hideDashPreview();
 
         if (isDashing && canDash) {
             performDash(direction);
         } else if (!isDashing) {
             performMove(direction);
+        }
+        if(isShiftDown) {
+            showDashPreview();
         }
     }
 
@@ -273,12 +292,33 @@ function setupBattleGame() {
         allCells[playerPosition].classList.add('player-cell');
     }
 
+    function showDashPreview() {
+        if (gameState !== 'RUNNING') return;
+        const x = playerPosition % gridSize;
+        const y = Math.floor(playerPosition / gridSize);
+
+        const landingUp = playerPosition - gridSize * Math.min(y, config.player.dashDistance);
+        const landingDown = playerPosition + gridSize * Math.min(gridSize - 1 - y, config.player.dashDistance);
+        const landingLeft = playerPosition - Math.min(x, config.player.dashDistance);
+        const landingRight = playerPosition + Math.min(gridSize - 1 - x, config.player.dashDistance);
+
+        if(allCells[landingUp]) allCells[landingUp].classList.add('dash-preview');
+        if(allCells[landingDown]) allCells[landingDown].classList.add('dash-preview');
+        if(allCells[landingLeft]) allCells[landingLeft].classList.add('dash-preview');
+        if(allCells[landingRight]) allCells[landingRight].classList.add('dash-preview');
+    }
+
+    function hideDashPreview() {
+        allCells.forEach(cell => cell.classList.remove('dash-preview'));
+    }
+
     function startGame() {
         gameState = 'RUNNING';
         score = 0;
         document.getElementById('score-value').textContent = score;
         allCells.forEach(cell => cell.className = 'grid-cell');
         updateGameMessage('', true);
+        updateGridSizeMessage('', false);
 
         playerHealth = config.player.health;
         isInvincible = false;
@@ -293,7 +333,9 @@ function setupBattleGame() {
         const centerX = Math.floor(gridSize / 2);
         const centerY = Math.floor(gridSize / 2);
         playerPosition = centerY * gridSize + centerX;
-        allCells[playerPosition].classList.add('player-cell');
+        const playerCell = allCells[playerPosition];
+        playerCell.classList.add('player-cell', 'player-spawn');
+        setTimeout(() => playerCell.classList.remove('player-spawn'), 1000);
 
         let spawnRate = config.game.initialSpawnRate;
 
@@ -357,6 +399,9 @@ function setupBattleGame() {
         playerHealth--;
         isInvincible = true;
 
+        gameContainer.classList.add('damage-flash');
+        setTimeout(() => gameContainer.classList.remove('damage-flash'), 300);
+
         const hearts = document.querySelectorAll('.heart:not(.empty)');
         if (hearts.length > 0) {
             hearts[hearts.length - 1].classList.add('empty');
@@ -385,7 +430,7 @@ function setupBattleGame() {
             localStorage.setItem('spaceFightHighScore', score);
             displayHighScore();
         }
-        updateGameMessage('GAME OVER<br>Press Arrow Key');
+        updateGridSizeMessage('GAME OVER<br>Press Arrow Key to Restart');
     }
 
     function updateGameMessage(text, hide = false) {
@@ -403,6 +448,16 @@ function setupBattleGame() {
             messageEl.innerHTML = text;
             messageEl.classList.remove('hidden');
             hud?.classList.add('hidden');
+        }
+    }
+
+    function updateGridSizeMessage(text, show = true) {
+        const messageEl = document.getElementById('grid-size-message');
+        if (show) {
+            messageEl.innerHTML = text;
+            messageEl.classList.remove('hidden');
+        } else {
+            messageEl.classList.add('hidden');
         }
     }
 
@@ -718,6 +773,10 @@ function setupBattleGame() {
         handleMove,
         get lastDirection() { return lastDirection; }
     };
+
+    if (window.innerWidth <= 768) {
+        gridSize = 5;
+    }
 
     rebuildGrid();
     setupInitialControls();
