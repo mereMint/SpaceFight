@@ -267,13 +267,14 @@ body {
 /* --- Mobile On-Screen Controls --- */
 .mobile-controls-container {
     position: fixed;
-    bottom: 30px;
+    bottom: 0;
     left: 0;
     width: 100%;
+    height: 30vh;
     display: none; /* Hidden by default */
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 0 30px;
+    padding: 0 20px 2vh 20px;
     box-sizing: border-box;
     z-index: 2000;
 }
@@ -284,25 +285,24 @@ body {
         ". up ."
         "left . right"
         ". down .";
-    gap: 20px;
+    gap: 5px;
 }
 
 .control-btn {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     background-color: rgba(0, 255, 0, 0.3);
     border: 2px solid #00FF00;
     color: #00FF00;
-    font-size: 2.5rem;
+    font-size: 3rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    line-height: 1; /* Helps vertically center special characters */
+    line-height: 1;
 }
 
-.control-btn:hover {
+.control-btn:active {
     background-color: rgba(0, 255, 0, 0.6);
-    cursor: pointer;
 }
 
 .control-btn#up-btn { grid-area: up; }
@@ -311,47 +311,83 @@ body {
 .control-btn#down-btn { grid-area: down; }
 
 .dash-button-mobile {
-    width: 90px;
-    height: 90px;
-    background-color: rgba(0, 255,, 0.3);
+    width: 120px;
+    height: 120px;
+    background-color: rgba(0, 255, 0, 0.3);
     border: 2px solid #00FF00;
+    border-radius: 50%;
     color: #00FF00;
     font-family: "Press Start 2P", system-ui;
-    font-size: 1rem;
+    font-size: 1.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
 }
 
-.dash-button-mobile:hover {
+.dash-button-mobile:active {
     background-color: rgba(0, 255, 0, 0.6);
-    cursor: pointer;
 }
 
 /* Show controls and adjust UI only on smaller/touch devices */
 @media (max-width: 768px) {
+    h1 {
+        display: none; /* Hide the main title on mobile battle screen */
+    }
     .container {
-        width: 90vmin;
-        height: 90vmin;
-        margin-top: 2vh;
+        width: 95vw;
+        height: 60vh;
+        margin-top: 12vh; /* Push the grid down to avoid HUD overlap */
+        margin-bottom: 0;
     }
     .hud {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 10vh;
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: column;
         justify-content: space-around;
+        padding: 10px;
+        box-sizing: border-box;
+        background-color: #000;
+        z-index: 1500;
+    }
+    .hud-top-row {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+    .hud-bottom-row {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
-        gap: 10px;
-        margin-top: 10px;
+        width: 100%;
+        margin-top: 5px;
     }
     .mobile-controls-container {
         display: flex;
     }
-    #score-container, #dash-indicator {
-        font-size: 1.2rem;
+    #score-container {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
         margin-top: 0;
+        flex-grow: 1;
+    }
+    #health-container {
+        margin-top: 0;
+        gap: 10px;
+    }
+    .heart {
+        width: 30px;
+        height: 30px;
     }
     #dash-indicator {
-        width: 180px;
+        width: 40%;
         margin: 0;
+        font-size: 0.7rem;
+        padding: 2px;
     }
 }
