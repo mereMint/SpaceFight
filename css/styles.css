@@ -52,16 +52,31 @@ body {
     overflow: hidden;
 }
 
-/* --- Mobile Styles --- */
+/* --- General Mobile Styles --- */
 @media (max-width: 768px) {
     h1, h2, h3, h4, h5, h6 {
-        font-size: 3.5rem;
+        font-size: 3rem;
+        word-break: break-all;
     }
     .high-score-menu {
         font-size: 1.5rem;
     }
     .start-button {
-        font-size: 2rem;
+        font-size: 1.8rem;
         padding: 15px 25px;
+    }
+}
+
+/* --- Specific Mobile Styles for smaller devices --- */
+@media (max-width: 400px) {
+    h1, h2, h3, h4, h5, h6 {
+        font-size: 2.5rem;
+    }
+    .high-score-menu {
+        font-size: 1.2rem;
+    }
+    .start-button {
+        font-size: 1.5rem;
+        padding: 12px 20px;
     }
 }

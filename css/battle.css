@@ -289,12 +289,12 @@ body {
 }
 
 .control-btn {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
     background-color: rgba(0, 255, 0, 0.3);
     border: 2px solid #00FF00;
     color: #00FF00;
-    font-size: 3rem;
+    font-size: 2.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -311,14 +311,14 @@ body {
 .control-btn#down-btn { grid-area: down; }
 
 .dash-button-mobile {
-    width: 120px;
-    height: 120px;
+    width: 110px;
+    height: 110px;
     background-color: rgba(0, 255, 0, 0.3);
     border: 2px solid #00FF00;
     border-radius: 50%;
     color: #00FF00;
     font-family: "Press Start 2P", system-ui;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -336,8 +336,8 @@ body {
     }
     .container {
         width: 95vw;
-        height: 60vh;
-        margin-top: 12vh; /* Push the grid down to avoid HUD overlap */
+        height: 55vh; /* Adjusted for new layout */
+        margin-top: 15vh; /* Push the grid down to avoid HUD overlap */
         margin-bottom: 0;
     }
     .hud {
@@ -345,7 +345,7 @@ body {
         top: 0;
         left: 0;
         width: 100%;
-        height: 10vh;
+        height: 15vh; /* Increased height */
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -372,7 +372,7 @@ body {
     #score-container {
         display: flex;
         justify-content: space-between;
-        font-size: 0.9rem;
+        font-size: 0.8rem; /* Adjusted for small screens */
         margin-top: 0;
         flex-grow: 1;
     }
@@ -381,13 +381,13 @@ body {
         gap: 10px;
     }
     .heart {
-        width: 30px;
-        height: 30px;
+        width: 25px; /* Adjusted for small screens */
+        height: 25px;
     }
     #dash-indicator {
-        width: 40%;
+        width: 45%; /* Adjusted for better spacing */
         margin: 0;
-        font-size: 0.7rem;
+        font-size: 0.6rem; /* Adjusted for small screens */
         padding: 2px;
     }
 }
