@@ -1,0 +1,352 @@
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Press Start 2P", system-ui;
+    text-align: center;
+    margin-top: 5vh;
+    text-shadow: #00FF00 0px 0px 10px;
+    animation: jiggle 2s infinite ease-in-out;
+}
+@keyframes jiggle {
+    0%, 100% {
+        transform: rotate(-3deg);
+        margin-left: -5%;
+    }
+    50% {
+        transform: rotate(3deg);
+        margin-left: 5%;
+    }
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00FF00;
+    width: 85vmin;
+    height: 85vmin;
+    max-width: 750px;
+    max-height: 750px;
+    margin: auto;
+    position: relative; /* Needed for absolute positioning of child elements */
+    margin-top: 5vh;
+    background-color: #000000;
+}
+
+body {
+    background-color: #000000;
+    color: #00FF00;
+}
+
+.playfield_grid {
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+    width: 100%;
+    height: 100%;
+    /* Use gap and background-color on the container to create grid lines */
+    gap: 1px;
+    background-color: #00FF00;
+    border: 1px solid #00FF00;
+    cursor: none;
+}
+
+.grid-cell {
+    /* The cells themselves are black, revealing the container's green background in the gaps */
+    background-color: #000000;
+}
+
+.grid-cell.player-cell {
+    background-color: white;
+}
+
+.grid-cell.dash-halo {
+    box-shadow: inset 0 0 10px 2px #00ffff;
+    background-color: rgba(0, 255, 255, 0.1);
+}
+
+.grid-cell.enemy {
+    background-color: #ff0000; /* Match attack: red */
+    box-shadow: 0 0 8px 4px #ff0000;
+    z-index: 10;
+}
+
+.grid-cell.enemy::before,
+.grid-cell.shockwave-enemy::before,
+.grid-cell.trail-enemy::before,
+.grid-cell.sniper-enemy::before,
+.grid-cell.laser-enemy::before,
+.grid-cell.hunter-enemy::before,
+.grid-cell.spinner-enemy::before,
+.grid-cell.guardian-enemy::before {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 2.5vmin;
+    font-weight: bold;
+    color: white;
+    text-shadow: 0 0 5px black;
+}
+
+.grid-cell.enemy::before { content: 'X'; }
+.grid-cell.shockwave-enemy::before { content: 'O'; }
+.grid-cell.trail-enemy::before { content: 'S'; }
+.grid-cell.sniper-enemy::before { content: '+'; }
+.grid-cell.laser-enemy::before { content: 'I'; }
+.grid-cell.hunter-enemy::before { content: 'H'; }
+.grid-cell.spinner-enemy::before { content: '@'; }
+.grid-cell.guardian-enemy::before { content: '#'; }
+
+.grid-cell.attack-zone {
+    background-color: #ff0000;
+    box-shadow: 0 0 8px 4px #ff0000;
+}
+
+.grid-cell.shockwave-zone {
+    background-color: #00ffff;
+    box-shadow: 0 0 8px 4px #00ffff;
+}
+
+.grid-cell.shockwave-enemy {
+    background-color: #00ffff; /* Match attack: cyan */
+    box-shadow: 0 0 8px 4px #00ffff;
+    z-index: 10;
+}
+
+.grid-cell.trail-enemy {
+    background-color: #ff4500; /* Match attack: orange-red */
+    box-shadow: 0 0 8px 4px #ff4500;
+    z-index: 10;
+}
+
+.grid-cell.trail-zone {
+    background-color: #ff4500;
+    transition: background-color 1s ease-out;
+}
+
+.grid-cell.sniper-enemy {
+    background-color: #9400d3; /* A deep violet */
+    box-shadow: 0 0 8px 4px #9400d3;
+    z-index: 10;
+}
+
+.grid-cell.laser-enemy {
+    background-color: #f0f8ff; /* Alice blue (whitish) */
+    box-shadow: 0 0 8px 4px #f0f8ff;
+    z-index: 10;
+    color: black; /* Make symbol readable on light background */
+}
+
+.grid-cell.hunter-enemy {
+    background-color: #ff1493; /* Deep Pink */
+    box-shadow: 0 0 8px 4px #ff1493;
+    z-index: 10;
+    animation: pulse 0.5s infinite;
+}
+
+.grid-cell.spinner-enemy {
+    background-color: #da70d6; /* Orchid */
+    box-shadow: 0 0 8px 4px #da70d6;
+    z-index: 10;
+    animation: pulse 0.5s infinite;
+}
+
+.grid-cell.guardian-enemy {
+    background-color: #20c20e; /* A friendly green */
+    box-shadow: 0 0 8px 4px #20c20e;
+    z-index: 10;
+    animation: pulse 0.5s infinite;
+}
+
+.grid-cell.safe-zone {
+    background-color: rgba(32, 194, 14, 0.4);
+    box-shadow: inset 0 0 10px 2px #20c20e;
+    /* No transition, we want it to appear and disappear instantly */
+}
+
+.grid-cell.telegraph-zone {
+    background-color: rgba(255, 255, 0, 0.3); /* A semi-transparent yellow warning */
+    animation: pulse 1s infinite;
+}
+
+#score-container {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    font-family: "Press Start 2P", system-ui;
+    text-align: center;
+    margin-top: 20px;
+    font-size: 1.5rem;
+    text-shadow: #00FF00 0px 0px 10px;
+}
+
+@keyframes gameOverFlash {
+    50% {
+        background-color: #680000; /* A dark, ominous red */
+    }
+}
+
+#health-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.heart {
+    width: 30px;
+    height: 30px;
+    background-color: #ff0000;
+    border: 2px solid #00FF00;
+}
+
+.heart.empty {
+    background-color: #333;
+}
+
+#game-over-message {
+    position: fixed; /* Position relative to the viewport */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "Press Start 2P", system-ui;
+    font-size: clamp(2rem, 10vmin, 4rem);
+    color: #00FF00;
+    text-shadow: #00FF00 0px 0px 10px;
+    z-index: 1000;
+}
+
+#dash-indicator {
+    font-family: "Press Start 2P", system-ui;
+    text-align: center;
+    margin: 15px auto 0 auto;
+    width: 200px;
+    border: 2px solid #00FF00;
+    color: #00FF00;
+    background-color: rgba(0, 255, 0, 0.1);
+    position: relative;
+    padding: 5px;
+}
+
+#dash-indicator-text {
+    position: relative;
+    z-index: 2;
+    font-size: 0.8rem;
+}
+
+#dash-indicator-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #00FF00;
+    z-index: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+#dash-indicator-bar.cooldown {
+    transform: scaleX(0);
+    background-color: #555;
+    animation: fill-dash-bar 1s linear forwards;
+}
+
+@keyframes fill-dash-bar {
+    to { transform: scaleX(1); }
+}
+.hidden {
+    display: none;
+}
+
+@keyframes pulse {
+    50% { opacity: 0.5; }
+}
+
+/* --- Mobile On-Screen Controls --- */
+.mobile-controls-container {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    display: none; /* Hidden by default */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    z-index: 2000;
+}
+
+.d-pad {
+    display: grid;
+    grid-template-areas:
+        ". up ."
+        "left . right"
+        ". down .";
+    gap: 10px;
+}
+
+.control-btn {
+    width: 50px;
+    height: 50px;
+    background-color: rgba(0, 255, 0, 0.3);
+    border: 2px solid #00FF00;
+    color: #00FF00;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1; /* Helps vertically center special characters */
+}
+
+.control-btn:hover {
+    background-color: rgba(0, 255, 0, 0.6);
+    cursor: pointer;
+}
+
+.control-btn#up-btn { grid-area: up; }
+.control-btn#left-btn { grid-area: left; }
+.control-btn#right-btn { grid-area: right; }
+.control-btn#down-btn { grid-area: down; }
+
+.dash-button-mobile {
+    width: 80px;
+    height: 80px;
+    background-color: rgba(0, 255, 0, 0.3);
+    border: 2px solid #00FF00;
+    color: #00FF00;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash-button-mobile:hover {
+    background-color: rgba(0, 255, 0, 0.6);
+    cursor: pointer;
+}
+
+/* Show controls and adjust UI only on smaller/touch devices */
+@media (max-width: 768px) {
+    .hud {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        align-items: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+    .mobile-controls-container {
+        display: flex;
+    }
+    #score-container, #dash-indicator {
+        font-size: 1rem;
+        margin-top: 0;
+    }
+    #dash-indicator {
+        width: 150px;
+        margin: 0;
+    }
+}

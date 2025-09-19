@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Website</title>
+    <link rel="stylesheet" href="../css/battle.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>SpaceFight</h1>
+    </header>
+    <main>
+        <div class="container" id="container">
+            <div class="playfield_grid" id="playfield_grid"></div>
+        </div>
+        <div id="game-over-message" class="hidden">GAME OVER</div>
+        <div class="hud">
+            <div id="score-container">
+                <span>Score: <span id="score-value">0</span></span>
+                <span>High Score: <span id="high-score-value">0</span></span>
+            </div>
+            <div id="health-container">
+                <div class="heart"></div>
+                <div class="heart"></div>
+                <div class="heart"></div>
+            </div>
+            <div id="dash-indicator">
+                <div id="dash-indicator-text">DASH READY</div>
+                <div id="dash-indicator-bar"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+    </footer>
+    <div class="mobile-controls-container">
+        <div class="d-pad">
+            <div class="control-btn" id="up-btn" onclick="onMoveButtonClick('ArrowUp')">▲</div>
+            <div class="control-btn" id="left-btn" onclick="onMoveButtonClick('ArrowLeft')">◀</div>
+            <div class="control-btn" id="right-btn" onclick="onMoveButtonClick('ArrowRight')">▶</div>
+            <div class="control-btn" id="down-btn" onclick="onMoveButtonClick('ArrowDown')">▼</div>
+        </div>
+        <div class="dash-button-mobile" id="dash-btn-mobile" onclick="onDashButtonClick()">DASH</div>
+    </div>
+    <audio id="theme-music" src="../assets/fight.mp3" loop></audio>
+    <script src="../js/script.js"></script>
+</body>
+</html>
